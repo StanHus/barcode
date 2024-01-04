@@ -7,8 +7,16 @@
   <body>
     <div id="interactive" class="viewport"></div>
     <div id="barcode"></div>
+    <button id="toggle">Toggle Manual Input</button>
+    <input type="text" id="manualInput" style="display: none" />
+    <button id="verify">Verify Barcode</button>
+    <div id="result"></div>
     <script type="text/javascript" src="barcode-scanner.js"></script>
     <style>
+      * {
+        transition: all 0.6s;
+      }
+
       #interactive.viewport {
         position: relative;
         width: 100%;
@@ -30,6 +38,11 @@
       #barcode {
         padding-top: 30px;
         font-size: 2em;
+      }
+      #toggle,
+      #verify {
+        display: none;
+        font-size: 1em;
       }
     </style>
   </body>

@@ -1,7 +1,7 @@
-// import Quagga from "quagga"; // ES6
-// // const Quagga = require("quagga").default; // Common JS (important: default)
-
 document.addEventListener("DOMContentLoaded", function () {
+  var scannerActive = true;
+  var lastScannedCode = "";
+
   Quagga.init(
     {
       inputStream: {
@@ -13,18 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
       decoder: {
-        readers: [
-          // "upc_reader",
-          // "upc_e_reader",
-          "ean_reader",
-          // "code_128_reader",
-          // "code_39_reader",
-          // "code_39_vin_reader",
-          // "codabar_reader",
-          // "i2of5_reader",
-          // "2of5_reader",
-          // "code_93_reader",
-        ],
+        readers: ["ean_reader"],
       },
     },
     function (err) {
@@ -33,13 +22,48 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
       Quagga.start();
+      document.getElementById("toggle").style.display = "block";
     }
   );
 
   Quagga.onDetected(function (data) {
-    console.log(data.codeResult.code);
-    // print the code on the screen
     let barcode = document.querySelector("#barcode");
     barcode.innerHTML = data.codeResult.code;
+    lastScannedCode = data.codeResult.code;
+    verify();
   });
+
+  document.getElementById("toggle").addEventListener("click", function () {
+    if (scannerActive) {
+      Quagga.stop();
+      document.getElementById("interactive").style.display = "none";
+      document.getElementById("verify").style.display = "block";
+      document.getElementById("manualInput").style.display = "block";
+    } else {
+      window.location.reload();
+      // Quagga.start();
+    }
+    scannerActive = !scannerActive;
+  });
+
+  const verify = () => {
+    const hardcodedBarcode = "5070000120713";
+    const inputBarcode = scannerActive
+      ? lastScannedCode
+      : document.getElementById("manualInput").value;
+
+    console.log(inputBarcode);
+
+    const match =
+      inputBarcode === hardcodedBarcode ||
+      (scannerActive && inputBarcode === hardcodedBarcode.slice(-4));
+
+    if (match) {
+      document.getElementById("result").innerText = "Match";
+    } else {
+      document.getElementById("result").innerText = "No Match";
+    }
+  };
+
+  document.getElementById("verify").addEventListener("click", verify);
 });

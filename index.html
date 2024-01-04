@@ -6,7 +6,6 @@
   </head>
   <body>
     <div id="interactive" class="viewport"></div>
-    <div id="barcode"></div>
     <button id="toggle">Toggle Manual Input</button>
     <input type="text" id="manualInput" style="display: none" />
     <button id="verify">Verify Barcode</button>
@@ -35,9 +34,11 @@
         left: 0;
         top: 0;
       }
-      #barcode {
+      #result {
         padding-top: 30px;
         font-size: 2em;
+        text-align: center;
+        width: 100%;
       }
       #toggle,
       #verify {

@@ -27,18 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   Quagga.onDetected(function (data) {
-    let barcode = document.querySelector("#barcode");
-    barcode.innerHTML = data.codeResult.code;
     lastScannedCode = data.codeResult.code;
     verify();
   });
 
   document.getElementById("toggle").addEventListener("click", function () {
     if (scannerActive) {
-      Quagga.stop();
       document.getElementById("interactive").style.display = "none";
       document.getElementById("verify").style.display = "block";
       document.getElementById("manualInput").style.display = "block";
+      Quagga.stop();
     } else {
       window.location.reload();
       // Quagga.start();
@@ -52,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ? lastScannedCode
       : document.getElementById("manualInput").value;
 
-    console.log(inputBarcode);
+    console.log(inputBarcode, hardcodedBarcode, hardcodedBarcode.slice(-4));
 
     const match =
       inputBarcode === hardcodedBarcode ||

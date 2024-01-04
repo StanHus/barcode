@@ -27,5 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   Quagga.onDetected(function (data) {
     console.log(data.codeResult.code);
+    // print the code on the screen
+    let barcode = document.querySelector("#barcode");
+    barcode.innerHTML = data.codeResult.code;
   });
 });

@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (scannerActive && inputBarcode === hardcodedBarcode.slice(-4));
 
     if (match) {
+      Quagga.stop();
       let countdown = 5;
       document.getElementById("result").innerHTML =
         "Match, redirecting in <br />" + countdown + " seconds ...";

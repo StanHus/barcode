@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
       decoder: {
-        readers: ["code_128_reader", "upc_reader", "upc_e_reader"],
+        readers: ["upc_reader"],
       },
     },
     function (err) {

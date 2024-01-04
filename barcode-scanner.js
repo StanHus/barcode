@@ -60,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
       Quagga.stop();
       let countdown = 5;
       document.getElementById("result").innerHTML =
-        "Match, redirecting in <br />" + countdown + " seconds ...";
+        "Match, redirecting in <br />" + countdown + " seconds";
 
       // Update the countdown every second
       let intervalId = setInterval(() => {
         countdown--;
         document.getElementById("result").innerHTML =
-          "Redirecting in <br />" + countdown + " seconds";
+          "Match, redirecting in <br />" + countdown + " seconds";
 
         if (countdown <= 0) {
           clearInterval(intervalId); // Clear interval once countdown is finished

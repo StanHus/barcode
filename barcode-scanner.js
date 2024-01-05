@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const verify = () => {
-    const hardcodedBarcode = "5070000120713";
+    const hardcodedBarcode = "5010102243149";
     const inputBarcode = scannerActive
       ? lastScannedCode
       : document.getElementById("manualInput").value;

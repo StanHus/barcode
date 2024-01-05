@@ -47,13 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const verify = () => {
     const hardcodedBarcode = "5010102243149";
     const inputBarcode = scannerActive
-      ? lastScannedCode
+      ? lastScannedCode.slice(-4)
       : document.getElementById("manualInput").value;
 
     console.log(inputBarcode, hardcodedBarcode, hardcodedBarcode.slice(-4));
 
     const match =
-      inputBarcode === hardcodedBarcode ||
+      inputBarcode === hardcodedBarcode.slice(-4) ||
       (scannerActive && inputBarcode === hardcodedBarcode.slice(-4));
 
     if (match) {
